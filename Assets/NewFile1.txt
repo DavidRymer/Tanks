@@ -1,0 +1,73 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Timers;
+using UnityEngine;
+using UnityEngine.Experimental.Rendering;
+using UnityEngine.Networking;
+
+namespace Shooter
+
+{
+    public class Shoot : Photon.MonoBehaviour
+    {
+        public GameObject bullet;
+        public int tickDelayPerShot = 20;
+        private int shootTimer = 0;
+        public List<Transform> bullets;
+        private PhotonView photonView;
+
+
+        void Start()
+        {
+            foreach (var bullet in bullets)
+            {
+                bullet.gameObject.AddComponent<Rigidbody2D>().isKinematic = true;
+                bullet.gameObject.AddComponent<Destroy>();
+            }
+            photonView = gameObject.GetPhotonView();
+
+
+        }
+
+        void FixedUpdate()
+        {
+            shootTimer += 1;
+            
+        }
+        
+
+
+
+        public void Fire(Vector2 direction, int rotation)
+        {
+            if (shootTimer > tickDelayPerShot)
+            {
+                
+                foreach (Transform projectile in bullets)
+                {
+                    if (projectile.parent == transform.Find("Ammo"))
+                    {
+                        projectile.GetComponent<Destroy>().Fire();
+                        
+                        projectile.transform.position = transform.position;
+                        projectile.transform.eulerAngles = new Vector3(0, 0, rotation);
+
+                        projectile.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+
+                        projectile.GetComponent<Rigidbody2D>().velocity = direction * 10f;
+                        projectile.parent = null;
+                        Debug.Log("Prjectile stuff " + projectile.parent);
+                        Debug.Log("Prjectile stuff " + projectile);
+                        
+                        break;
+
+                    }
+                        
+                }
+        
+                shootTimer = 0;
+            }
+        }
+    }
+}
