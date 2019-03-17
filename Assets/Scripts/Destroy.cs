@@ -21,14 +21,11 @@ public class Destroy : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Rocket"))
         {
-            Debug.Log(other.gameObject.CompareTag("Rocket"));
             GameObject explosion =
                 PhotonNetwork.Instantiate(bulletHit.name, transform.position, Quaternion.identity, 0);
+           
         }
         
-        Debug.Log(other.gameObject.CompareTag("Rocket") + "dddddddddddd");
-
-
 
         if (photonView.isMine)
         {

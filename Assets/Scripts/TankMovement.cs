@@ -4,30 +4,28 @@ using System.Linq;
 using UnityEngine;
 using Shooter;
 
-public class TankMovement : MonoBehaviour
+public class TankMovement : Photon.PunBehaviour
 {
     public float speed = 3f;
     public GameObject bullet;
     private Shoot _bullet;
-    private PhotonView photonView;
 
 
     void Start()
     {
         _bullet = transform.Find("Body").Find("Gun Pivot").Find("Gun").Find("ShootingPoint").gameObject
             .AddComponent<Shoot>();
-//        _bullet.bullets = transform.Find("Body").Find("Gun Pivot").Find("Gun").Find("ShootingPoint").Find("Ammo")
-//            .GetComponentsInChildren<Transform>().ToList();
-//        photonView = gameObject.GetPhotonView();
-//
+
         _bullet.bullet = bullet;
-  }
+    }
+
 
     private void FixedUpdate()
     {
         BodyMovement();
         GunMovement();
     }
+
 
     void RotateGun(int z)
     {
@@ -40,7 +38,6 @@ public class TankMovement : MonoBehaviour
         {
             RotateGun(270);
             _bullet.Fire(Vector2.up, 0);
-            
         }
 
         else if (Input.GetKey(KeyCode.LeftArrow))

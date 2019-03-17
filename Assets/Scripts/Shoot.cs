@@ -31,7 +31,6 @@ namespace Shooter
             {
                 GameObject projectile = PhotonNetwork.Instantiate(bullet.name, transform.position, Quaternion.identity,0);
                 projectile.transform.eulerAngles = new Vector3(0, 0, rotation);
-                projectile.AddComponent<Rigidbody2D>().isKinematic = true;
                 projectile.GetComponent<Rigidbody2D>().velocity = direction * 10f;
                 shootTimer = 0;
             }

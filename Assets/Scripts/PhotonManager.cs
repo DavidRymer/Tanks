@@ -14,25 +14,29 @@ public class PhotonManager : Photon.MonoBehaviour {
 	
 	void OnJoinedLobby(){
 		Debug.Log("lobby joined");
-		PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions (){ MaxPlayers = 2 }, TypedLobby.Default);
+//		PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions (){ MaxPlayers = 2 }, TypedLobby.Default);
+		
+		foreach (var room in PhotonNetwork.GetRoomList())
+		{
+			Debug.Log(room.Name);
+		}
+
 		
 	}
 
 	private void OnConnectedToMaster()
 	{
+		Debug.Log("connected to master david");
 		PhotonNetwork.JoinLobby();
-	}
-
-
-	void OnLeftRoom()
-	{
-		Debug.Log("fefefe");
 	}
 
 	
 	void OnJoinedRoom(){
-		PhotonNetwork.Instantiate ("Player",transform.position,Quaternion.identity,0);
-		
+		GameObject b =PhotonNetwork.Instantiate ("Player",transform.position,Quaternion.identity,0);
+//		GameObject a = PhotonNetwork.Instantiate ("Player",transform.position + new Vector3(10,  0, 0),Quaternion.identity,0);
+//		a.GetComponent<TankMovement>().speed = 0;
+
+
 	}
 	
 }
