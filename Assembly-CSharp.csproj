@@ -136,6 +136,8 @@
     <Compile Include="Assets\Scripts\PhotonManager.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\PlayerNetworking.cs" />
+    <Compile Include="Assets\Scripts\RenderRooms.cs" />
+    <Compile Include="Assets\Scripts\RoomListComponent.cs" />
     <Compile Include="Assets\Scripts\Shoot.cs" />
     <Compile Include="Assets\Scripts\TankMovement.cs" />
     <None Include="Assets\Photon Unity Networking\link.xml" />

@@ -613,10 +613,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 2
-  cloudProjectId: a1eb117a-58c5-47d6-b029-adc29a77c409
+  cloudProjectId: 616f5704-dfe1-4d7d-bb97-dcb8ad9e1fe1
   framebufferDepthMemorylessMode: 0
   projectName: Photon Game Online
-  organizationId: miangel_p
+  organizationId: lob230
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

@@ -6,21 +6,56 @@ using UnityEngine.UI;
 
 public class ErrorMessages : MonoBehaviour
 {
-    public static void RoomNotFound(String roomName, Canvas canvas)
+    protected static void UpdateErrorMessage(GameObject errorMessage, string newMessage)
     {
-        GameObject text = new GameObject("ErrorMessage");
+        if (errorMessage != null)
+        {
+            errorMessage.GetComponent<Text>().text = newMessage;
+        }
+    }
+}
 
-        Text textContent = text.AddComponent<Text>();
-        textContent.text = "No room found with name: " + roomName;
+public class RoomNotFound : ErrorMessages
+{
+    private string roomName;
+    private Canvas canvas;
 
-        Font arialFont = (Font) Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
-        textContent.font = arialFont;
-        textContent.material = arialFont.material;
+    public void ThrowError()
+    {
+        string message = "No room found with name: " + roomName;
+        Transform roomNotFound = canvas.transform.Find("RoomNotFound");
+        
+        if (roomNotFound == null)
+        {
 
-        RectTransform rectTransform = textContent.rectTransform;
-        rectTransform.position = new Vector3(50, 30, 0);
-        rectTransform.sizeDelta = new Vector2(300, 100);
+            GameObject text = new GameObject("RoomNotFound");
 
-        text.transform.SetParent(canvas.transform);
+            Text textContent = text.AddComponent<Text>();
+            textContent.text = message;
+
+            Font arialFont = (Font) Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
+            textContent.font = arialFont;
+            textContent.material = arialFont.material;
+
+            RectTransform rectTransform = textContent.rectTransform;
+            rectTransform.anchoredPosition = new Vector3(528, 299);
+            rectTransform.sizeDelta = new Vector2(300, 100);
+
+            text.transform.SetParent(canvas.transform);
+        }
+        else
+        {
+            UpdateErrorMessage(roomNotFound.gameObject, message);
+        }
+    }
+
+    public void SetRoomName(string newName)
+    {
+        this.roomName = newName;
+    }
+    
+    public void SetCanvas(Canvas newCanvas)
+    {
+        this.canvas = newCanvas;
     }
 }

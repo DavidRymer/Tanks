@@ -138,6 +138,8 @@
           <e p="PhotonManager.cs" t="Include" />
           <e p="PlayerMovement.cs" t="Include" />
           <e p="PlayerNetworking.cs" t="Include" />
+          <e p="RenderRooms.cs" t="Include" />
+          <e p="RoomListComponent.cs" t="Include" />
           <e p="Shoot.cs" t="Include" />
           <e p="TankMovement.cs" t="Include" />
         </e>

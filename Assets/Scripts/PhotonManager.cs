@@ -14,14 +14,7 @@ public class PhotonManager : Photon.MonoBehaviour {
 	
 	void OnJoinedLobby(){
 		Debug.Log("lobby joined");
-//		PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions (){ MaxPlayers = 2 }, TypedLobby.Default);
-		
-		foreach (var room in PhotonNetwork.GetRoomList())
-		{
-			Debug.Log(room.Name);
-		}
 
-		
 	}
 
 	private void OnConnectedToMaster()

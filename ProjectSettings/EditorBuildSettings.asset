@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JoinRoom.unity
     guid: 7ae5d0d2b3c637e45b47edcade94cc11
+  - enabled: 1
+    path: Assets/Scenes/RoomList.unity
+    guid: 7e7462522af53904f835570150dd7a26
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

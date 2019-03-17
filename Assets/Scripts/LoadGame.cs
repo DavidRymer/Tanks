@@ -12,7 +12,10 @@ public class LoadGame : MonoBehaviour
 
     public void LoadScene(string scene)
     {
-        PhotonNetwork.ConnectUsingSettings("1.0");
+        if (!PhotonNetwork.connected)
+        {
+            PhotonNetwork.ConnectUsingSettings("1.0");
+        }
         PhotonNetwork.LoadLevel(scene);
     }
 
@@ -45,20 +48,19 @@ public class LoadGame : MonoBehaviour
         }
         else
         {
-            ErrorMessages.RoomNotFound(roomName, canvas);
+            var roomNotFound = gameObject.AddComponent<RoomNotFound>();
+            roomNotFound.SetCanvas(canvas);
+            roomNotFound.SetRoomName(roomName);
+            roomNotFound.ThrowError();
+            
+            var inputField = transform.GetComponent<InputField>();
+            inputField.ActivateInputField();
         }
     }
 
     private static bool DoesRoomExist(string room)
     {
         return PhotonNetwork.GetRoomList().Any(roomInfo => roomInfo.Name == room);
-    }
-
-    public void RenderRoomList()
-    {
-        foreach (var roomInfo in PhotonNetwork.GetRoomList())
-        {
-        }
     }
 
 
