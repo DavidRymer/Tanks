@@ -9,6 +9,10 @@ using UnityEngine.UI;
 public class LoadGame : MonoBehaviour
 {
     public Canvas canvas;
+    public GameObject roomNameBox;
+    public GameObject maxPlayersDropDown;
+    private String roomName;
+    private byte maxPlayers;
 
     public void LoadScene(string scene)
     {
@@ -16,31 +20,45 @@ public class LoadGame : MonoBehaviour
         {
             PhotonNetwork.ConnectUsingSettings("1.0");
         }
+
         PhotonNetwork.LoadLevel(scene);
     }
 
-    public void Logger()
+    public void CreateRoom()
     {
-        Debug.Log("Checking for Rooms");
-        if (PhotonNetwork.insideLobby)
+        SetRoomName();
+        SetMaxPlayers();
+
+        if (!DoesRoomExist(roomName))
         {
-            Debug.Log("Inside a Lobby");
-            var rooms = PhotonNetwork.GetRoomList();
-            foreach (var room in rooms)
-                Debug.Log("Found room: " + room.ToString());
+            RoomOptions roomOptions = new RoomOptions {MaxPlayers = maxPlayers};
+            PhotonNetwork.CreateRoom(roomName, roomOptions, TypedLobby.Default);
+            PhotonNetwork.LoadLevel("Main");
+        }
+        else
+        {
+            var roomAlreadyExists = gameObject.AddComponent<RoomAlreadyExists>();
+            roomAlreadyExists.SetCanvas(canvas);
+            roomAlreadyExists.SetRoomName(roomName);
+            roomAlreadyExists.ThrowError();
         }
     }
 
-    public void CreateRoom(string roomName)
+    public void SetRoomName()
     {
-        Debug.Log(roomName);
-        PhotonNetwork.CreateRoom(roomName);
-        PhotonNetwork.LoadLevel("Main");
+        this.roomName = roomNameBox.GetComponent<InputField>().text;
+    }
+
+    public void SetMaxPlayers()
+    {
+        this.maxPlayers = (byte) (maxPlayersDropDown.GetComponent<Dropdown>().value + 2);
     }
 
 
-    public void JoinRoom(string roomName)
+    public void JoinRoom()
     {
+        SetRoomName();
+
         if (DoesRoomExist(roomName))
         {
             PhotonNetwork.JoinRoom(roomName);
@@ -52,9 +70,6 @@ public class LoadGame : MonoBehaviour
             roomNotFound.SetCanvas(canvas);
             roomNotFound.SetRoomName(roomName);
             roomNotFound.ThrowError();
-            
-            var inputField = transform.GetComponent<InputField>();
-            inputField.ActivateInputField();
         }
     }
 

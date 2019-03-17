@@ -29,7 +29,7 @@ public class RoomListComponent : MonoBehaviour
     
     private void AddNumberOfPlayersToHolder()
     {
-        newHolder.transform.Find("NumberOfPlayers").GetComponent<Text>().text = roomInfo.PlayerCount.ToString();
+        newHolder.transform.Find("NumberOfPlayers").GetComponent<Text>().text = roomInfo.PlayerCount.ToString() + "/" + roomInfo.MaxPlayers;
     }
 
     private void UpdateHolderButton()

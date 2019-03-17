@@ -59,3 +59,48 @@ public class RoomNotFound : ErrorMessages
         this.canvas = newCanvas;
     }
 }
+//TODO work on duplication
+public class RoomAlreadyExists : ErrorMessages
+{
+    private string roomName;
+    private Canvas canvas;
+
+    public void ThrowError()
+    {
+        string message = "The room name: " + roomName + ", is already taken.";
+        Transform roomNotFound = canvas.transform.Find("RoomAlreadyExists");
+        
+        if (roomNotFound == null)
+        {
+
+            GameObject text = new GameObject("RoomAlreadyExists");
+
+            Text textContent = text.AddComponent<Text>();
+            textContent.text = message;
+
+            Font arialFont = (Font) Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
+            textContent.font = arialFont;
+            textContent.material = arialFont.material;
+
+            RectTransform rectTransform = textContent.rectTransform;
+            rectTransform.anchoredPosition = new Vector3(500, 330);
+            rectTransform.sizeDelta = new Vector2(300, 100);
+
+            text.transform.SetParent(canvas.transform);
+        }
+        else
+        {
+            UpdateErrorMessage(roomNotFound.gameObject, message);
+        }
+    }
+
+    public void SetRoomName(string newName)
+    {
+        this.roomName = newName;
+    }
+    
+    public void SetCanvas(Canvas newCanvas)
+    {
+        this.canvas = newCanvas;
+    }
+}

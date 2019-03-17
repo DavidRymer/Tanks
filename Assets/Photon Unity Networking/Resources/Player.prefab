@@ -525,7 +525,7 @@ Transform:
   m_LocalPosition: {x: 2.1, y: 2.07, z: -0.026515106}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1677749290472498867}
+  - {fileID: 4472416294909250954}
   - {fileID: 8882930196786833796}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -663,8 +663,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   bullet: {fileID: 1984473070442688, guid: b3cbc65617086ca4991ee7f254d9fcf9, type: 3}
-  hc: {fileID: 3057993656458068532}
-  health: 100
 --- !u!50 &2828056884422512311
 Rigidbody2D:
   serializedVersion: 4
@@ -698,7 +696,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2256517a1e8f9064a8ac8463b0bfce45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1677749290472498876}
+  healthBar: {fileID: 674944102062892924}
+  health: 100
+  damage: 5
+  tankExplosion: {fileID: 6981761285407815133, guid: 75cde7469b3fe5047b69f5a09131e145,
+    type: 3}
 --- !u!1 &8886301886577443740
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,11 +982,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 198918493159712115, guid: 0077a9f50cc8c0d48baf51f100c892f1,
-        type: 3}
-      propertyPath: m_ScaleModel.InterpolateOption
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6511820897827572205, guid: 0077a9f50cc8c0d48baf51f100c892f1,
         type: 3}
       propertyPath: viewIdField
@@ -995,12 +992,17 @@ PrefabInstance:
       propertyPath: instantiationId
       value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 1130390389117354678, guid: 0077a9f50cc8c0d48baf51f100c892f1,
+    - target: {fileID: 198918493159712115, guid: 0077a9f50cc8c0d48baf51f100c892f1,
+        type: 3}
+      propertyPath: m_ScaleModel.InterpolateOption
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5840326071642841941, guid: 0077a9f50cc8c0d48baf51f100c892f1,
         type: 3}
       propertyPath: viewIdField
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1130390389117354678, guid: 0077a9f50cc8c0d48baf51f100c892f1,
+    - target: {fileID: 5840326071642841941, guid: 0077a9f50cc8c0d48baf51f100c892f1,
         type: 3}
       propertyPath: instantiationId
       value: -1
@@ -1010,20 +1012,15 @@ PrefabInstance:
       propertyPath: m_ScaleModel.InterpolateOption
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5840326071642841941, guid: 0077a9f50cc8c0d48baf51f100c892f1,
+    - target: {fileID: 1130390389117354678, guid: 0077a9f50cc8c0d48baf51f100c892f1,
         type: 3}
       propertyPath: viewIdField
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5840326071642841941, guid: 0077a9f50cc8c0d48baf51f100c892f1,
+    - target: {fileID: 1130390389117354678, guid: 0077a9f50cc8c0d48baf51f100c892f1,
         type: 3}
       propertyPath: instantiationId
       value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6832331910267100171, guid: 0077a9f50cc8c0d48baf51f100c892f1,
-        type: 3}
-      propertyPath: m_ScaleModel.InterpolateOption
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8521010247783765078, guid: 0077a9f50cc8c0d48baf51f100c892f1,
         type: 3}
@@ -1040,7 +1037,7 @@ PrefabInstance:
       propertyPath: instantiationId
       value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 1324893613015592427, guid: 0077a9f50cc8c0d48baf51f100c892f1,
+    - target: {fileID: 6832331910267100171, guid: 0077a9f50cc8c0d48baf51f100c892f1,
         type: 3}
       propertyPath: m_ScaleModel.InterpolateOption
       value: 1
@@ -1055,15 +1052,20 @@ PrefabInstance:
       propertyPath: instantiationId
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 1324893613015592427, guid: 0077a9f50cc8c0d48baf51f100c892f1,
+        type: 3}
+      propertyPath: m_ScaleModel.InterpolateOption
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0077a9f50cc8c0d48baf51f100c892f1, type: 3}
---- !u!1 &1677749290472498876 stripped
+--- !u!1 &674944102062892924 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2167764150819930565, guid: 0077a9f50cc8c0d48baf51f100c892f1,
     type: 3}
   m_PrefabInstance: {fileID: 1677749290472498873}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1677749290472498867 stripped
+--- !u!4 &4472416294909250954 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2979596227890047795, guid: 0077a9f50cc8c0d48baf51f100c892f1,
     type: 3}

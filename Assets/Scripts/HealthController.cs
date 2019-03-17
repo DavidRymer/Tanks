@@ -7,6 +7,7 @@ public class HealthController : Photon.PunBehaviour
     public GameObject healthBar;
     public int health = 100;
     public int damage = 5;
+    public GameObject tankExplosion;
 
     [PunRPC]
     void TakeDamage()
@@ -21,6 +22,8 @@ public class HealthController : Photon.PunBehaviour
         else
         {
             health = 0;
+            PhotonNetwork.Instantiate(tankExplosion.name, transform.position, Quaternion.identity, 0);
+            gameObject.SetActive(false);
         }
         
         healthBar.transform.Find("Bar").localScale = new Vector3(3.1f * health / 100f, bar.y, bar.z);

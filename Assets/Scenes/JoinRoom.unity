@@ -462,7 +462,6 @@ GameObject:
   - component: {fileID: 1104406217}
   - component: {fileID: 1104406216}
   - component: {fileID: 1104406215}
-  - component: {fileID: 1104406218}
   m_Layer: 5
   m_Name: InputField
   m_TagString: Untagged
@@ -540,18 +539,7 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1104406218}
-        m_MethodName: JoinRoom
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -603,19 +591,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104406213}
   m_CullTransparentMesh: 0
---- !u!114 &1104406218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104406213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02d9233e1757dca48834260924cbcd2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 312198409}
 --- !u!1001 &1179879685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -804,6 +779,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
+  roomNameBox: {fileID: 0}
+  maxPlayersDropDown: {fileID: 0}
 --- !u!114 &1822349345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -964,7 +941,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Submit
 --- !u!222 &1846796189
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1069,7 +1046,7 @@ GameObject:
   - component: {fileID: 2133539152}
   - component: {fileID: 2133539151}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Submit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1107,7 +1084,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d9233e1757dca48834260924cbcd2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 312198409}
+  roomNameBox: {fileID: 1104406213}
+  maxPlayersDropDown: {fileID: 0}
 --- !u!114 &2133539152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1149,7 +1128,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2133539151}
-        m_MethodName: Logger
+        m_MethodName: JoinRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
